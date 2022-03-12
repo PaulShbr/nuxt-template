@@ -1,5 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr:false,
+  target: 'server',
   head: {
     title: 'nuxt-template',
     htmlAttrs: {
@@ -18,14 +20,14 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins:[
+  ], 
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   //server-middleware
   serverMiddleware: [
-    { path: "/api", handler: "~/server_middleware/server.ts"}
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -34,11 +36,37 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    'nuxt-compress',
   ],
-
+//https://www.npmjs.com/package/nuxt-compress
+'nuxt-compress': {
+    gzip: {
+      threshold: 8192,
+    },
+    brotli: {
+      threshold: 8192,
+    },
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
-
+  modules: [
+  'nuxt-ssr-cache'
+  ],
+ 
+  //https://www.npmjs.com/package/nuxt-ssr-cache
+  cache: {
+   useHostPrefix: false,
+    pages: [
+        /^\/$/
+    ],
+    store: {
+      type: 'memory',
+      max: 100,
+      ttl: 60,
+    },
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+  babel: {
+  }
+  },
 }

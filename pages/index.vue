@@ -1,11 +1,9 @@
-<template>
-  <Tutorial />
-</template>
+import Tutorial from '~/components/Tutorial.vue';
+import {Component, Vue, render} from 'nuxt-property-decorator';
 
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
-  name: 'IndexPage',
-})
-</script>
+@Component
+export default class IndexPage  extends Vue {
+ render(h) {
+   return "Hello World";
+ }
+}
