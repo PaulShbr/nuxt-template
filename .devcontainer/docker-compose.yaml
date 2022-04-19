@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  nodeserver:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Update 'VARIANT' to pick an LTS version of Node.js: 16, 14, 12.
+        # Append -bullseye or -buster to pin to an OS version.
+        # Use -bullseye variants on local arm64/Apple Silicon.
+        VARIANT: 14-bullseye
+    volumes:
+      - ..:/workspace:cached
+    ports:
+      - 3000:3000
+  
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity

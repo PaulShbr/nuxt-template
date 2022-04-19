@@ -1,4 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
+
+# devcontainer data directory
+/.devcontainer/.data/
+
 ### Node template
 # Logs
 /logs/*
